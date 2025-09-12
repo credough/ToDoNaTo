@@ -1,0 +1,121 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+/* Layout */
+body {
+  display: flex;
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: #111827;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.sidebar .logo {
+  margin-bottom: 1rem;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav ul li {
+  margin: 0.75rem 0;
+}
+
+.sidebar nav ul li a {
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.sidebar nav ul li.active a {
+  color: #fff;
+  font-weight: bold;
+}
+
+.sidebar-footer a {
+  display: block;
+  margin: 0.5rem 0;
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+/* Header */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.main-header input {
+  width: 60%;
+  padding: 0.5rem;
+}
+
+/* Task Section */
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-toggle button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.view-toggle button.active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.task-group {
+  margin-top: 1rem;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.4rem 0;
+}
+
+.task-item span {
+  margin: 0 0.5rem;
+}
+
+#taskForm {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#taskForm input, #taskForm select, #taskForm button {
+  padding: 0.4rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}
