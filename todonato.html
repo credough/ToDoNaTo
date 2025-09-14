@@ -60,17 +60,41 @@
         <div class="task-group" id="todo">
           <h3>To Do</h3>
         </div>
-        
     </section>
 
     <section id="dashboard">
-      <h2>Dashboard</h2>
-      <div class="stats">
-        <div class="card">📋 Total Tasks: <span id="totalTasks">0</span></div>
-        <div class="card">✅ Completed: <span id="completedTasks">0</span></div>
-        <div class="card">⏳ Pending: <span id="pendingTasks">0</span></div>
-      </div>
-    </section>
+  <h2>Dashboard</h2>
+
+  <!-- Stats Cards -->
+  <div class="stats">
+    <div class="card total">
+      <h3>Total Tasks</h3>
+      <p id="totalTasks">0</p>
+    </div>
+    <div class="card completed">
+      <h3>Completed</h3>
+      <p id="completedTasks">0</p>
+    </div>
+    <div class="card pending">
+      <h3>Pending</h3>
+      <p id="pendingTasks">0</p>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-section">
+    <h3>Progress</h3>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Chart Section -->
+  <div class="chart-section">
+    <canvas id="taskChart"></canvas>
+  </div>
+</section>
+
 
     <section id="goals">
       <h2>Finished Tasks</h2>
@@ -174,12 +198,43 @@ taskForm.addEventListener("submit", (e) => {
 });
 
 
-    function updateDashboard() {
-      totalTasksEl.textContent = totalTasks;
-      completedTasksEl.textContent = completedTasks;
-      pendingTasksEl.textContent = totalTasks - completedTasks;
-    }
+  function updateDashboard() {
+  totalTasksEl.textContent = totalTasks;
+  completedTasksEl.textContent = completedTasks;
+  pendingTasksEl.textContent = totalTasks - completedTasks;
+
+  // Progress bar update
+  const progressFill = document.getElementById("progressFill");
+  let progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+  progressFill.style.width = progress + "%";
+
+  // Chart update
+  taskChart.data.datasets[0].data = [completedTasks, totalTasks - completedTasks];
+  taskChart.update();
+}
+
   });
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('taskChart').getContext('2d');
+  const taskChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Completed', 'Pending'],
+      datasets: [{
+        data: [0, 0], // JS will update dynamically
+        backgroundColor: ['#28a745', '#ffc107'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'bottom' } }
+    }
+  });
+</script>
+
 </body>
 </html>
